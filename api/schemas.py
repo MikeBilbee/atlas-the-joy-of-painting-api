@@ -1,33 +1,13 @@
-from pydantic import BaseModel
-from typing import List
+from pydantic import BaseModel, Field
+from typing import Optional
 
 
-class ColorBase(BaseModel):
-    color_name: str
-    color_hex: str
-
-class Color(ColorBase):
-    color_id: int
-    class Config:
-        orm_mode = True
-
-class SubjectBase(BaseModel):
-    subject_name: str
-
-class Subject(SubjectBase):
-    subject_id: int
-    class Config:
-        orm_mode = True
-    
-class EpisodeBase(BaseModel):
-    episode_name: str
-    air_date: str  
-
-class Episode(EpisodeBase):
-    episode_id: int
-    colors: List[Color] = []
-    subjects: List[Subject] = []
+class EpisodeSchema(BaseModel):
+    """ POST request fields -- all Optional """
+    title: Optional[str] = Field(None, max_length=50)
+    date: Optional[str] = Field(None, max_length=20)
+    color_list: Optional[str] = Field(None, max_length=200)
+    subject_list: Optional[str] = Field(None, max_length=200)
 
     class Config:
         orm_mode = True
-        

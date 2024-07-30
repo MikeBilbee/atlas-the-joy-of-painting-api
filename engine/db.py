@@ -11,4 +11,5 @@ SQLALCHEMY_DATEBASE_URI = 'sqlite:///joy_of_painting.db'
 engine = create_engine(SQLALCHEMY_DATEBASE_URI)
 # Create New Session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+session=SessionLocal()
 Base = declarative_base()
